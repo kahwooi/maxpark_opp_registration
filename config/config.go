@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -25,7 +26,13 @@ type Config struct {
 }
 
 func Load() *Config {
-	if err := godotenv.Load(); err != nil {
+	env := os.Getenv("APP_ENV")
+	envFile := ".env"
+	if env != "" {
+		envFile = fmt.Sprintf(".env.%s", env)
+	}
+
+	if err := godotenv.Load(envFile); err != nil {
 		log.Printf("No .env file found, using system environment variables")
 	}
 

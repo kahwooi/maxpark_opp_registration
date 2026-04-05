@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"maxpark_opp_registration/config"
@@ -39,6 +40,10 @@ func (h *CompanyHandler) HandleCreateCompanyRegister(c echo.Context) error {
 		return utils.ErrorResponse(c, http.StatusBadRequest, "Validation failed", err.Error())
 	}
 
+	// Normalize data before creating payload
+	form.CompanyName = strings.ToUpper(strings.TrimSpace(form.CompanyName))
+	form.ContactPerson = strings.ToUpper(strings.TrimSpace(form.ContactPerson))
+
 	registrationPayload := map[string]interface{}{
 		"employerID":             uuid.New().String(),
 		"employerName":           form.CompanyName,
@@ -61,7 +66,7 @@ func (h *CompanyHandler) HandleCreateCompanyRegister(c echo.Context) error {
 			"address1":         form.CompanyAddressLine1,
 			"address2":         form.CompanyAddressLine2,
 			"nric":             plate.NricNumber,
-			"vehicleNum":       plate.PlateNumber,
+			"vehicleNum":       strings.ToUpper(strings.ReplaceAll(plate.PlateNumber, " ", "")),
 			"tinNumber":        form.TinNumber,
 			"vehicleClass":     plate.VehicleType,
 			"spaPath":          plate.SPAPath,
@@ -172,6 +177,10 @@ func (h *CompanyHandler) HandleCreateCompanyRegisterFinalize(c echo.Context) err
 		return utils.ErrorResponse(c, http.StatusBadRequest, "Validation failed", err.Error())
 	}
 
+	// Normalize data before creating payload
+	form.CompanyName = strings.ToUpper(strings.TrimSpace(form.CompanyName))
+	form.ContactPerson = strings.ToUpper(strings.TrimSpace(form.ContactPerson))
+
 	natsPayload := map[string]interface{}{
 		"employerID":             form.EmployerID,
 		"companyRegNum":          form.CompanyRegistrationNumber,
@@ -194,7 +203,7 @@ func (h *CompanyHandler) HandleCreateCompanyRegisterFinalize(c echo.Context) err
 			"address1":         form.CompanyAddressLine1,
 			"address2":         form.CompanyAddressLine2,
 			"nric":             plate.NricNumber,
-			"vehicleNum":       plate.PlateNumber,
+			"vehicleNum":       strings.ToUpper(strings.ReplaceAll(plate.PlateNumber, " ", "")),
 			"tinNumber":        form.TinNumber,
 			"vehicleClass":     plate.VehicleType,
 			"spaPath":          plate.SPAPath,

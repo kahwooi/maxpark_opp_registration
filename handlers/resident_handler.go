@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"maxpark_opp_registration/config"
@@ -39,7 +40,7 @@ func (h *ResidentHandler) HandleCreateResidentRegister(c echo.Context) error {
 	}
 
 	natsPayload := map[string]interface{}{
-		"vehicleNum": form.ResidentPlates.PlateNumber,
+		"vehicleNum": strings.ToUpper(strings.ReplaceAll(form.ResidentPlates.PlateNumber, " ", "")),
 	}
 
 	data, err := json.Marshal(natsPayload)
@@ -101,12 +102,12 @@ func (h *ResidentHandler) HandleCreateResidentRegisterFinalize(c echo.Context) e
 	natsPayload := map[string]interface{}{
 		"nric":             form.NricNumber,
 		"tinNumber":        form.TinNumber,
-		"fullName":         form.ResidentName,
+		"fullName":         strings.ToUpper(form.ResidentName),
 		"email":            form.ContactEmail,
 		"contactNumber":    form.ContactNumber,
 		"address1":         form.ResidentAddressLine1,
 		"address2":         form.ResidentAddressLine2,
-		"vehicleNum":       form.ResidentPlates.PlateNumber,
+		"vehicleNum":       strings.ToUpper(strings.ReplaceAll(form.ResidentPlates.PlateNumber, " ", "")),
 		"vehicleClass":     form.ResidentPlates.VehicleType,
 		"vehiclePath":      form.ResidentPlates.VehiclePath,
 		"spaPath":          form.ResidentSupportingFiles.SPAPath,

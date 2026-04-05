@@ -2,7 +2,9 @@ package services
 
 import (
 	"fmt"
+	"net/url"
 	"path"
+	"strings"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 )
@@ -29,7 +31,9 @@ func (o *OSSService) GeneratePresignedURL(registerId, fileType, fileName, employ
 	var objectKey string
 	switch fileType {
 	case "plate":
-		objectKey = path.Join("uploads", registerId, "plates", fmt.Sprintf("%s_%s", plateNumber, fileName))
+		decoded, _ := url.QueryUnescape(plateNumber)
+		normalizedPlate := strings.ToUpper(strings.ReplaceAll(decoded, " ", ""))
+		objectKey = path.Join("uploads", registerId, "plates", fmt.Sprintf("%s_%s", normalizedPlate, fileName))
 	case "general":
 		if employerId == "" {
 			objectKey = path.Join("uploads", registerId, "general", fileName)
