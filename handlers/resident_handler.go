@@ -125,9 +125,20 @@ func (h *ResidentHandler) HandleCreateResidentRegisterFinalize(c echo.Context) e
 		return utils.ErrorResponse(c, 500, "Failed to send NATS message", err.Error())
 	}
 
-	var natsResponseData interface{}
+	var natsResponseData map[string]interface{}
 	if err := json.Unmarshal(natsResponse.Data, &natsResponseData); err != nil {
-		natsResponseData = string(natsResponse.Data)
+		return utils.ErrorResponse(c, 500, "Failed to parse NATS response", err.Error())
+	}
+
+	success, ok := natsResponseData["success"].(bool)
+	if !ok || !success {
+		errorMsg := ""
+		if errData, ok := natsResponseData["error"].(map[string]interface{}); ok {
+			if msg, ok := errData["message"].(string); ok {
+				errorMsg = msg
+			}
+		}
+		return utils.ErrorResponse(c, 400, "Resident registration finalization failed", errorMsg)
 	}
 
 	responseData := map[string]interface{}{

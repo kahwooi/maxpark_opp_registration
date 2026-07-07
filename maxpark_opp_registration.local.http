@@ -11,9 +11,9 @@ Content-Type: application/json
     "contactNumber": "0123456789",
     "contactEmail": "tkk@maxpark.com",
     "residentAddressLine1": "10 Anson Road",
-    "residentAddressLine2": "",
+    "residentAddressLine2": "Level 21, Top Glove Tower, 16, Persiaran Setia Dagang, Setia Alam, Seksyen U13, 40170 Shah Alam, Selangor, Malaysia",
     "residentPlate":  {
-        "plateNumber": "WSS3198",
+        "plateNumber": "WSS8198",
         "vehicleType": "1",
         "vehiclePath": "uploads/35c7b59f-046c-4622-8025-56cdb6fe10f5/plates/WSS9899_vehicle_file.jpg"
     },
@@ -40,7 +40,7 @@ Content-Type: application/json
     "contactNumber": "012345678",
     "contactEmail": "tkk@maxpark.com",
     "residentAddressLine1": "10 Anson Road",
-    "residentAddressLine2": "",
+    "residentAddressLine2": "Level 21, Top Glove Tower, 16, Persiaran Setia Dagang, Setia Alam, Seksyen U13, 40170 Shah Alam, Selangor, Malaysia",
     "residentPlate":  {
         "plateNumber": "WSS9899",
         "vehicleType": "1",
@@ -62,9 +62,9 @@ Content-Type: application/json
     "tinNumber": "MA2819827D",
     "companyName": "MaxPark Pte Ltd",
     "contactPerson": "Tan Kah Kow",
-    "contactNumber": "012345678",  
+    "contactNumber": "012345678901",  
     "contactEmail": "tkk@maxpark.com",
-    "companyAddressLine1": "10 Anson Road",
+    "companyAddressLine1": "Level 21, Top Glove Tower, 16, Persiaran Setia Dagang, Setia Alam, Seksyen U13, 40170 Shah Alam, Selangor, Malaysia",
     "companyAddressLine2": "",
     "companyPlates": [
         {
@@ -106,10 +106,10 @@ Content-Type: application/json
     "tinNumber": "MA2819827D",
     "companyName": "MaxPark Pte Ltd",
     "contactPerson": "Tan Kah Kow",
-    "contactNumber": "012345678",  
+    "contactNumber": "012345678789",  
     "contactEmail": "tkk@maxpark.com",
-    "companyAddressLine1": "10 Anson Road",
-    "companyAddressLine2": "",
+    "companyAddressLine1": "Level 21, Top Glove Tower",
+    "companyAddressLine2": "Level 21, Top Glove Tower, 16, Persiaran Setia Dagang, Setia Alam, Seksyen U13, 40170 Shah Alam, Selangor, Malaysia",
     "companyPlates": [
         {
             "nricNumber": "881223145678",
