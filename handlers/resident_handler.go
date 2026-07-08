@@ -39,11 +39,27 @@ func (h *ResidentHandler) HandleCreateResidentRegister(c echo.Context) error {
 		return utils.ErrorResponse(c, http.StatusBadRequest, "Validation failed", err.Error())
 	}
 
-	natsPayload := map[string]interface{}{
-		"vehicleNum": strings.ToUpper(strings.ReplaceAll(form.ResidentPlates.PlateNumber, " ", "")),
+	registrationPayload := map[string]interface{}{
+		"nric":          form.NricNumber,
+		"tinNumber":     form.TinNumber,
+		"fullName":      strings.ToUpper(form.ResidentName),
+		"email":         form.ContactEmail,
+		"contactNumber": form.ContactNumber,
+		"address1":      form.ResidentAddressLine1,
+		"address2":      form.ResidentAddressLine2,
+		"individuals":   []map[string]interface{}{},
 	}
 
-	data, err := json.Marshal(natsPayload)
+	for _, plate := range form.ResidentPlates {
+		individual := map[string]interface{}{
+			"vehicleNum":   strings.ToUpper(strings.ReplaceAll(plate.PlateNumber, " ", "")),
+			"vehicleClass": plate.VehicleType,
+			"vehiclePath":  plate.VehiclePath,
+		}
+		registrationPayload["individuals"] = append(registrationPayload["individuals"].([]map[string]interface{}), individual)
+	}
+
+	data, err := json.Marshal(registrationPayload)
 	if err != nil {
 		return utils.ErrorResponse(c, 500, "Failed to marshal NATS payload", err.Error())
 	}
@@ -100,18 +116,27 @@ func (h *ResidentHandler) HandleCreateResidentRegisterFinalize(c echo.Context) e
 	}
 
 	natsPayload := map[string]interface{}{
-		"nric":             form.NricNumber,
-		"tinNumber":        form.TinNumber,
-		"fullName":         strings.ToUpper(form.ResidentName),
-		"email":            form.ContactEmail,
-		"contactNumber":    form.ContactNumber,
-		"address1":         form.ResidentAddressLine1,
-		"address2":         form.ResidentAddressLine2,
-		"vehicleNum":       strings.ToUpper(strings.ReplaceAll(form.ResidentPlates.PlateNumber, " ", "")),
-		"vehicleClass":     form.ResidentPlates.VehicleType,
-		"vehiclePath":      form.ResidentPlates.VehiclePath,
-		"spaPath":          form.ResidentSupportingFiles.SPAPath,
-		"electricBillPath": form.ResidentSupportingFiles.ElectricBillPath,
+		"nric":                form.NricNumber,
+		"tinNumber":           form.TinNumber,
+		"fullName":            strings.ToUpper(form.ResidentName),
+		"email":               form.ContactEmail,
+		"contactNumber":       form.ContactNumber,
+		"address1":            form.ResidentAddressLine1,
+		"address2":            form.ResidentAddressLine2,
+		"individuals":         []map[string]interface{}{},
+		"isTenant":            form.IsTenant,
+		"spaPath":             form.ResidentSupportingFiles.SPAPath,
+		"electricBillPath":    form.ResidentSupportingFiles.ElectricBillPath,
+		"tenantAgreementPath": form.ResidentSupportingFiles.TenantAgreementPath,
+	}
+
+	for _, plate := range form.ResidentPlates {
+		individual := map[string]interface{}{
+			"vehicleNum":   strings.ToUpper(strings.ReplaceAll(plate.PlateNumber, " ", "")),
+			"vehicleClass": plate.VehicleType,
+			"vehiclePath":  plate.VehiclePath,
+		}
+		natsPayload["individuals"] = append(natsPayload["individuals"].([]map[string]interface{}), individual)
 	}
 
 	data, err := json.Marshal(natsPayload)
