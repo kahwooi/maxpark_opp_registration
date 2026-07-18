@@ -17,8 +17,9 @@ import (
 )
 
 type ResidentHandler struct {
-	natsService *services.NATSService
-	config      *config.Config
+	natsService    *services.NATSService
+	config         *config.Config
+	receiptService *services.ReceiptService
 }
 
 func NewResidentHandler(natsService *services.NATSService, cfg *config.Config) *ResidentHandler {
@@ -169,6 +170,8 @@ func (h *ResidentHandler) HandleCreateResidentRegisterFinalize(c echo.Context) e
 		}
 		return utils.ErrorResponse(c, 400, "Resident registration finalization failed", errorMsg)
 	}
+
+	h.receiptService.SendReceipt(h.config.MailerFrom, form.ContactEmail, "Registration Received", form.ResidentName)
 
 	responseData := map[string]interface{}{
 		"residentName": form.ResidentName,

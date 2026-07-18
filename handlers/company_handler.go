@@ -18,8 +18,9 @@ import (
 )
 
 type CompanyHandler struct {
-	natsService *services.NATSService
-	config      *config.Config
+	natsService    *services.NATSService
+	config         *config.Config
+	receiptService *services.ReceiptService
 }
 
 func NewCompanyHandler(natsService *services.NATSService, cfg *config.Config) *CompanyHandler {
@@ -243,6 +244,8 @@ func (h *CompanyHandler) HandleCreateCompanyRegisterFinalize(c echo.Context) err
 		}
 		return utils.ErrorResponse(c, 400, "Company registration finalization failed", errorMsg)
 	}
+
+	h.receiptService.SendReceipt(h.config.MailerFrom, form.ContactEmail, "Registration Received", form.CompanyName)
 
 	responseData := map[string]interface{}{
 		"id":           form.IDNumber,

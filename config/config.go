@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 
 	"github.com/joho/godotenv"
+	"gopkg.in/gomail.v2"
 )
 
 type Config struct {
@@ -23,6 +25,11 @@ type Config struct {
 	RegisterEmployerIDSubject         string
 	SiteCode                          string
 	JWTSecretKey                      string
+	MailerFrom                        string
+	MailerHost                        string
+	MailerPort                        int
+	MaiilerUsername                   string
+	MailerPassword                    string
 }
 
 func Load() *Config {
@@ -51,6 +58,11 @@ func Load() *Config {
 		RegisterEmployerIDSubject:         getEnv("REGISTER_EMPLOYER_ID_SUBJECT", ""),
 		SiteCode:                          getEnv("SITE_CODE", ""),
 		JWTSecretKey:                      getEnv("JWT_SECRET_KEY", ""),
+		MailerFrom:                        getEnv("MAILER_FROM", ""),
+		MailerHost:                        getEnv("MAILER_HOST", ""),
+		MailerPort:                        getEnvAsInt("MAILER_PORT", 0),
+		MaiilerUsername:                   getEnv("MAILER_USER", ""),
+		MailerPassword:                    getEnv("MAILER_PASSWORD", ""),
 	}
 }
 
@@ -59,4 +71,29 @@ func getEnv(key, defaultValue string) string {
 		return value
 	}
 	return defaultValue
+}
+
+func getEnvAsInt(key string, defaultValue int) int {
+	if value := os.Getenv(key); value != "" {
+		intValue, err := strconv.Atoi(value)
+		if err != nil {
+			log.Printf("Error converting environment variable %s to int: %v, using default value %d", key, err, defaultValue)
+			return defaultValue
+		}
+		return intValue
+	}
+	return defaultValue
+}
+
+func InitializeMailer() *gomail.Dialer {
+	mailerHost := os.Getenv("MAILER_HOST")
+	mailerPortStr := os.Getenv("MAILER_PORT")
+	mailerPort, err := strconv.Atoi(mailerPortStr)
+	if err != nil {
+		log.Fatalf("Error converting MAILER_PORT to int: %v", err)
+	}
+	mailerUsername := os.Getenv("MAILER_USER")
+	mailerPassword := os.Getenv("MAILER_PASSWORD")
+
+	return gomail.NewDialer(mailerHost, mailerPort, mailerUsername, mailerPassword)
 }

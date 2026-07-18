@@ -10,7 +10,7 @@ type ResidentRegisterForm struct {
 	IsTenant                bool                    `json:"isTenant"`
 	ResidentPlates          []ResidentPlates        `json:"residentPlates"`
 	ResidentSupportingFiles ResidentSupportingFiles `json:"residentSupportingFiles"`
-	IDType                  string                  `json:"idType" validate:"required,oneof=NRIC FIN Passport"`
+	IDType                  string                  `json:"idType" validate:"required"`
 	IDNumber                string                  `json:"idNumber" validate:"required,min=5,max=16"`
 	VehiclePassType         string                  `json:"vehiclePassType"`
 }
