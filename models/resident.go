@@ -6,11 +6,13 @@ type ResidentRegisterForm struct {
 	ContactEmail            string                  `json:"contactEmail" validate:"required,email,min=5,max=32"`
 	ResidentAddressLine1    string                  `json:"residentAddressLine1" validate:"required,min=5,max=48"`
 	ResidentAddressLine2    string                  `json:"residentAddressLine2" validate:"max=48"`
-	NricNumber              string                  `json:"nricNumber" validate:"omitempty,min=1,max=16"`
 	TinNumber               string                  `json:"tinNumber" validate:"omitempty,min=1,max=16"`
 	IsTenant                bool                    `json:"isTenant"`
 	ResidentPlates          []ResidentPlates        `json:"residentPlates"`
 	ResidentSupportingFiles ResidentSupportingFiles `json:"residentSupportingFiles"`
+	IDType                  string                  `json:"idType" validate:"required,oneof=NRIC FIN Passport"`
+	IDNumber                string                  `json:"idNumber" validate:"required,min=5,max=16"`
+	VehiclePassType         string                  `json:"vehiclePassType"`
 }
 
 type ResidentPlates struct {

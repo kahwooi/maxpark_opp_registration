@@ -51,11 +51,13 @@ func (h *CompanyHandler) HandleCreateCompanyRegister(c echo.Context) error {
 		"contactNumber":          form.ContactNumber,
 		"address1":               form.CompanyAddressLine1,
 		"address2":               form.CompanyAddressLine2,
-		"companyRegNum":          form.CompanyRegistrationNumber,
 		"tinNumber":              form.TinNumber,
 		"email":                  form.ContactEmail,
 		"companySupportingFiles": form.CompanySupportingFiles,
 		"individuals":            []map[string]interface{}{},
+		"idType":                 form.IDType,
+		"idNumber":               form.IDNumber,
+		"vehiclePassType":        form.VehiclePassType,
 	}
 
 	for _, plate := range form.CompanyPlates {
@@ -183,7 +185,6 @@ func (h *CompanyHandler) HandleCreateCompanyRegisterFinalize(c echo.Context) err
 
 	natsPayload := map[string]interface{}{
 		"employerID":             form.EmployerID,
-		"companyRegNum":          form.CompanyRegistrationNumber,
 		"tinNumber":              form.TinNumber,
 		"employerName":           form.CompanyName,
 		"contactPerson":          form.ContactPerson,
@@ -191,6 +192,9 @@ func (h *CompanyHandler) HandleCreateCompanyRegisterFinalize(c echo.Context) err
 		"email":                  form.ContactEmail,
 		"address1":               form.CompanyAddressLine1,
 		"address2":               form.CompanyAddressLine2,
+		"idType":                 form.IDType,
+		"idNumber":               form.IDNumber,
+		"vehiclePassType":        form.VehiclePassType,
 		"individuals":            []map[string]interface{}{},
 		"companySupportingFiles": form.CompanySupportingFiles,
 	}
@@ -241,7 +245,7 @@ func (h *CompanyHandler) HandleCreateCompanyRegisterFinalize(c echo.Context) err
 	}
 
 	responseData := map[string]interface{}{
-		"id":           form.CompanyRegistrationNumber,
+		"id":           form.IDNumber,
 		"natsResponse": natsResponseData,
 	}
 	return utils.SuccessResponse(c, "Company registration finalized successfully", responseData)

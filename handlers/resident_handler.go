@@ -40,14 +40,16 @@ func (h *ResidentHandler) HandleCreateResidentRegister(c echo.Context) error {
 	}
 
 	registrationPayload := map[string]interface{}{
-		"nric":          form.NricNumber,
-		"tinNumber":     form.TinNumber,
-		"fullName":      strings.ToUpper(form.ResidentName),
-		"email":         form.ContactEmail,
-		"contactNumber": form.ContactNumber,
-		"address1":      form.ResidentAddressLine1,
-		"address2":      form.ResidentAddressLine2,
-		"individuals":   []map[string]interface{}{},
+		"tinNumber":       form.TinNumber,
+		"fullName":        strings.ToUpper(form.ResidentName),
+		"email":           form.ContactEmail,
+		"contactNumber":   form.ContactNumber,
+		"address1":        form.ResidentAddressLine1,
+		"address2":        form.ResidentAddressLine2,
+		"individuals":     []map[string]interface{}{},
+		"idType":          form.IDType,
+		"idNumber":        form.IDNumber,
+		"vehiclePassType": form.VehiclePassType,
 	}
 
 	for _, plate := range form.ResidentPlates {
@@ -116,13 +118,15 @@ func (h *ResidentHandler) HandleCreateResidentRegisterFinalize(c echo.Context) e
 	}
 
 	natsPayload := map[string]interface{}{
-		"nric":                form.NricNumber,
 		"tinNumber":           form.TinNumber,
 		"fullName":            strings.ToUpper(form.ResidentName),
 		"email":               form.ContactEmail,
 		"contactNumber":       form.ContactNumber,
 		"address1":            form.ResidentAddressLine1,
 		"address2":            form.ResidentAddressLine2,
+		"idType":              form.IDType,
+		"idNumber":            form.IDNumber,
+		"vehiclePassType":     form.VehiclePassType,
 		"individuals":         []map[string]interface{}{},
 		"isTenant":            form.IsTenant,
 		"spaPath":             form.ResidentSupportingFiles.SPAPath,
