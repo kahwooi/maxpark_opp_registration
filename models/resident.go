@@ -1,12 +1,12 @@
 package models
 
 type ResidentRegisterForm struct {
-	ResidentName            string                  `json:"residentName" validate:"omitempty,min=1,max=64"`
-	ContactNumber           string                  `json:"contactNumber" validate:"omitempty,min=1,max=12"`
+	ResidentName            string                  `json:"residentName" validate:"omitempty,min=5,max=64"`
+	ContactNumber           string                  `json:"contactNumber" validate:"omitempty,min=5,max=12"`
 	ContactEmail            string                  `json:"contactEmail" validate:"omitempty,email,min=5,max=32"`
 	ResidentAddressLine1    string                  `json:"residentAddressLine1" validate:"omitempty,min=5,max=48"`
 	ResidentAddressLine2    string                  `json:"residentAddressLine2" validate:"omitempty,max=48"`
-	TinNumber               string                  `json:"tinNumber" validate:"omitempty,min=1,max=16"`
+	TinNumber               string                  `json:"tinNumber" validate:"omitempty,min=5,max=16"`
 	IsTenant                bool                    `json:"isTenant"`
 	ResidentPlates          []ResidentPlates        `json:"residentPlates"`
 	ResidentSupportingFiles ResidentSupportingFiles `json:"residentSupportingFiles"`

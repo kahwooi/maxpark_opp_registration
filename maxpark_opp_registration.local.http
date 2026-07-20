@@ -8,10 +8,10 @@ Content-Type: application/json
     "nricNumber": "881223145678",
     "tinNumber": "MA2819827D",
     "residentName": "Tan Kah Kow",
-    "contactNumber": "0123456789",
+    "contactNumber": "123456789012",
     "contactEmail": "tkk@maxpark.com",
     "residentAddressLine1": "10 Anson Road",
-    "residentAddressLine2": "Level 21, Top Glove Tower, 16, Persiaran Setia Dagang, Setia Alam, Seksyen U13, 40170 Shah Alam, Selangor, Malaysia",
+    "residentAddressLine2": "Level 21, Setia Alam, Selangor, Malaysia",
     "residentPlate":  {
         "plateNumber": "WSS8198",
         "vehicleType": "1",

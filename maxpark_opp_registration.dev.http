@@ -1,4 +1,4 @@
-@baseUrl = http://103.159.132.89:8081
+@baseUrl = https://portal.qzentrix.com/reg-api
 
 # 1. Start by registering Individual/Resident to get a registerId
  POST {{baseUrl}}/registers/resident
@@ -8,7 +8,7 @@ Content-Type: application/json
     "nricNumber": "881223145678",
     "tinNumber": "MA2819827D",
     "residentName": "Tan Kah Kow",
-    "contactNumber": "0123456789",
+    "contactNumber": "123456789012",
     "contactEmail": "tkk@maxpark.com",
     "residentAddressLine1": "10 Anson Road",
     "residentAddressLine2": "",

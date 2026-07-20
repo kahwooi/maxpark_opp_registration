@@ -3,9 +3,9 @@ package models
 type CompanyRegisterForm struct {
 	EmployerID             string                 `json:"employerID" validate:"omitempty"`
 	TinNumber              string                 `json:"tinNumber" validate:"omitempty,min=5,max=16"`
-	CompanyName            string                 `json:"companyName" validate:"omitempty,min=1,max=64"`
+	CompanyName            string                 `json:"companyName" validate:"omitempty,min=5,max=64"`
 	ContactPerson          string                 `json:"contactPerson" validate:"omitempty,min=5,max=64"`
-	ContactNumber          string                 `json:"contactNumber" validate:"omitempty,min=12,max=12"`
+	ContactNumber          string                 `json:"contactNumber" validate:"omitempty,min=5,max=12"`
 	ContactEmail           string                 `json:"contactEmail" validate:"omitempty,email,min=5,max=32"`
 	CompanyAddressLine1    string                 `json:"companyAddressLine1" validate:"omitempty,min=5,max=48"`
 	CompanyAddressLine2    string                 `json:"companyAddressLine2" validate:"omitempty,max=48"`
