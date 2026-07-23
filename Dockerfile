@@ -30,6 +30,9 @@ RUN apk add --no-cache tzdata
 COPY --from=builder /app/main .
 COPY --from=builder /app/.env ./.env
 
+# Copy templates directory
+COPY --from=builder /app/templates ./templates
+
 # Expose the port your app runs on
 EXPOSE 8081
 
