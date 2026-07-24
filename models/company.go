@@ -9,6 +9,7 @@ type CompanyRegisterForm struct {
 	ContactEmail           string                 `json:"contactEmail" validate:"omitempty,email,min=5,max=32"`
 	CompanyAddressLine1    string                 `json:"companyAddressLine1" validate:"omitempty,min=5,max=48"`
 	CompanyAddressLine2    string                 `json:"companyAddressLine2" validate:"omitempty,max=48"`
+	IsTenant               bool                   `json:"isTenant"`
 	CompanyPlates          []CompanyPlates        `json:"companyPlates"`
 	CompanySupportingFiles CompanySupportingFiles `json:"companySupportingFiles"`
 	IDType                 string                 `json:"idType" validate:"omitempty"`
@@ -26,7 +27,8 @@ type CompanyPlates struct {
 }
 
 type CompanySupportingFiles struct {
-	SSMPath          string `json:"ssmPath"`
-	ElectricBillPath string `json:"electricBillPath"`
-	VehiclePath      string `json:"vehiclePath"`
+	SSMPath             string `json:"ssmPath"`
+	ElectricBillPath    string `json:"electricBillPath"`
+	VehiclePath         string `json:"vehiclePath"`
+	TenantAgreementPath string `json:"tenantAgreementPath"`
 }

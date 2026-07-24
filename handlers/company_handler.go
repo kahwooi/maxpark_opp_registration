@@ -198,6 +198,7 @@ func (h *CompanyHandler) HandleCreateCompanyRegisterFinalize(c echo.Context) err
 		"vehiclePassType":        form.VehiclePassType,
 		"individuals":            []map[string]interface{}{},
 		"companySupportingFiles": form.CompanySupportingFiles,
+		"isTenant":               form.IsTenant,
 	}
 
 	for _, plate := range form.CompanyPlates {
