@@ -18,17 +18,13 @@ type CompanyRegisterForm struct {
 }
 
 type CompanyPlates struct {
-	NricNumber       string `json:"nricNumber"`
-	PlateNumber      string `json:"plateNumber" validate:"omitempty,min=1,max=20"`
-	VehicleType      string `json:"vehicleType"`
-	SPAPath          string `json:"spaPath"`
-	ElectricBillPath string `json:"electricBillPath"`
-	VehiclePath      string `json:"vehiclePath"`
+	PlateNumber string `json:"plateNumber" validate:"omitempty,min=1,max=20"`
+	VehicleType string `json:"vehicleType"`
+	VehiclePath string `json:"vehiclePath"`
 }
 
 type CompanySupportingFiles struct {
 	SSMPath             string `json:"ssmPath"`
 	ElectricBillPath    string `json:"electricBillPath"`
-	VehiclePath         string `json:"vehiclePath"`
 	TenantAgreementPath string `json:"tenantAgreementPath"`
 }

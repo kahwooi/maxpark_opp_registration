@@ -63,18 +63,15 @@ func (h *CompanyHandler) HandleCreateCompanyRegister(c echo.Context) error {
 
 	for _, plate := range form.CompanyPlates {
 		individual := map[string]interface{}{
-			"fullName":         form.ContactPerson,
-			"email":            form.ContactEmail,
-			"contactNumber":    form.ContactNumber,
-			"address1":         form.CompanyAddressLine1,
-			"address2":         form.CompanyAddressLine2,
-			"nric":             plate.NricNumber,
-			"vehicleNum":       strings.ToUpper(strings.ReplaceAll(plate.PlateNumber, " ", "")),
-			"tinNumber":        form.TinNumber,
-			"vehicleClass":     plate.VehicleType,
-			"spaPath":          plate.SPAPath,
-			"electricBillPath": plate.ElectricBillPath,
-			"vehiclePath":      plate.VehiclePath,
+			"fullName":      form.ContactPerson,
+			"email":         form.ContactEmail,
+			"contactNumber": form.ContactNumber,
+			"address1":      form.CompanyAddressLine1,
+			"address2":      form.CompanyAddressLine2,
+			"vehicleNum":    strings.ToUpper(strings.ReplaceAll(plate.PlateNumber, " ", "")),
+			"tinNumber":     form.TinNumber,
+			"vehicleClass":  plate.VehicleType,
+			"vehiclePath":   plate.VehiclePath,
 		}
 		registrationPayload["individuals"] = append(registrationPayload["individuals"].([]map[string]interface{}), individual)
 	}
@@ -203,18 +200,15 @@ func (h *CompanyHandler) HandleCreateCompanyRegisterFinalize(c echo.Context) err
 
 	for _, plate := range form.CompanyPlates {
 		individual := map[string]interface{}{
-			"fullName":         form.ContactPerson,
-			"email":            form.ContactEmail,
-			"contactNumber":    form.ContactNumber,
-			"address1":         form.CompanyAddressLine1,
-			"address2":         form.CompanyAddressLine2,
-			"nric":             plate.NricNumber,
-			"vehicleNum":       strings.ToUpper(strings.ReplaceAll(plate.PlateNumber, " ", "")),
-			"tinNumber":        form.TinNumber,
-			"vehicleClass":     plate.VehicleType,
-			"spaPath":          plate.SPAPath,
-			"electricBillPath": plate.ElectricBillPath,
-			"vehiclePath":      plate.VehiclePath,
+			"fullName":      form.ContactPerson,
+			"email":         form.ContactEmail,
+			"contactNumber": form.ContactNumber,
+			"address1":      form.CompanyAddressLine1,
+			"address2":      form.CompanyAddressLine2,
+			"vehicleNum":    strings.ToUpper(strings.ReplaceAll(plate.PlateNumber, " ", "")),
+			"tinNumber":     form.TinNumber,
+			"vehicleClass":  plate.VehicleType,
+			"vehiclePath":   plate.VehiclePath,
 		}
 		natsPayload["individuals"] = append(natsPayload["individuals"].([]map[string]interface{}), individual)
 	}

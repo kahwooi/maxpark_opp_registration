@@ -58,29 +58,22 @@ POST {{baseUrl}}/registers/company
 Content-Type: application/json
 
 {
-    "companyRegistrationNumber": "SM0000001A",
     "tinNumber": "MA2819827D",
     "companyName": "MaxPark Pte Ltd",
     "contactPerson": "Tan Kah Kow",
     "contactNumber": "012345678901",  
     "contactEmail": "tkk@maxpark.com",
-    "companyAddressLine1": "Level 21, Top Glove Tower, 16, Persiaran Setia Dagang, Setia Alam, Seksyen U13, 40170 Shah Alam, Selangor, Malaysia",
+    "companyAddressLine1": "Level 21, Top Glove Tower",
     "companyAddressLine2": "",
     "companyPlates": [
         {
-            "nricNumber": "881223145678",
-            "plateNumber": "WSS9999",
+            "plateNumber": "WSP7654",
             "vehicleType": "1",
-            "spaPath": "uploads/95fc22cc-ecb0-44a6-8246-4dbfed453e88/plates/WSS9899_spa_file.jpg",
-            "electricBillPath": "uploads/95fc22cc-ecb0-44a6-8246-4dbfed453e88/plates/WSS9899_electricity_file.jpg",
             "vehiclePath": "uploads/95fc22cc-ecb0-44a6-8246-4dbfed453e88/plates/WSS9899_vehicle_file.jpg"
         },
         {
-            "nricNumber": "881223145678",
-            "plateNumber": "WSS8688",
+            "plateNumber": "WSS8658",
             "vehicleType": "1",
-            "spaPath": "uploads/95fc22cc-ecb0-44a6-8246-4dbfed453e88/plates/WSS9899_spa_file.jpg",
-            "electricBillPath": "uploads/95fc22cc-ecb0-44a6-8246-4dbfed453e88/plates/WSS9899_electricity_file.jpg",
             "vehiclePath": "uploads/95fc22cc-ecb0-44a6-8246-4dbfed453e88/plates/WSS9899_vehicle_file.jpg"
         }
     ]
@@ -101,28 +94,25 @@ POST {{baseUrl}}/registers/company/finalize
 Content-Type: application/json
 
 {
-    "employerID": "E000000221",
-    "companyRegistrationNumber": "SM0000001A",
+    "employerID": "E000000052",
     "tinNumber": "MA2819827D",
     "companyName": "MaxPark Pte Ltd",
     "contactPerson": "Tan Kah Kow",
     "contactNumber": "012345678789",  
     "contactEmail": "tkk@maxpark.com",
     "companyAddressLine1": "Level 21, Top Glove Tower",
-    "companyAddressLine2": "Level 21, Top Glove Tower, 16, Persiaran Setia Dagang, Setia Alam, Seksyen U13, 40170 Shah Alam, Selangor, Malaysia",
+    "companyAddressLine2": "Persiaran Setia Dagang, Setia Alam",
+    "isTenant": true,
     "companyPlates": [
         {
-            "nricNumber": "881223145678",
-            "plateNumber": "WSS9899",
+            "plateNumber": "WSS98779",
             "vehicleType": "1",
-            "spaPath": "uploads/95fc22cc-ecb0-44a6-8246-4dbfed453e88/plates/WSS9899_spa_file.jpg",
-            "electricBillPath": "uploads/95fc22cc-ecb0-44a6-8246-4dbfed453e88/plates/WSS9899_electricity_file.jpg",
             "vehiclePath": "uploads/95fc22cc-ecb0-44a6-8246-4dbfed453e88/plates/WSS9899_vehicle_file.jpg"
         }
     ],
     "companySupportingFiles": {
         "ssmPath": "uploads/95fc22cc-ecb0-44a6-8246-4dbfed453e88/general/E000000221_smm_file.jpg",
         "electricBillPath": "uploads/95fc22cc-ecb0-44a6-8246-4dbfed453e88/general/E000000221_electricity_file.jpg",
-        "vehiclePath": "uploads/95fc22cc-ecb0-44a6-8246-4dbfed453e88/general/E000000221_vehicle_file.jpg"
+        "tenantAgreementPath": "uploads/95fc22cc-ecb0-44a6-8246-4dbfed453e88/general/E000000221_vehicle_file.jpg"
     }
 }
