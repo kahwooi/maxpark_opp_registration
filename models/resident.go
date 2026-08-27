@@ -13,6 +13,7 @@ type ResidentRegisterForm struct {
 	IDType                  string                  `json:"idType" validate:"omitempty"`
 	IDNumber                string                  `json:"idNumber" validate:"omitempty,min=5,max=16"`
 	VehiclePassType         string                  `json:"vehiclePassType" validate:"omitempty"`
+	CardType                string                  `json:"cardType" validate:"omitempty"`
 }
 
 type ResidentPlates struct {

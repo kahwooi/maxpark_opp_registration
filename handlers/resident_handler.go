@@ -51,6 +51,7 @@ func (h *ResidentHandler) HandleCreateResidentRegister(c echo.Context) error {
 		"idType":          form.IDType,
 		"idNumber":        form.IDNumber,
 		"vehiclePassType": form.VehiclePassType,
+		"cardType":        form.CardType,
 	}
 
 	for _, plate := range form.ResidentPlates {
@@ -127,6 +128,7 @@ func (h *ResidentHandler) HandleCreateResidentRegisterFinalize(c echo.Context) e
 		"address2":            form.ResidentAddressLine2,
 		"idType":              form.IDType,
 		"idNumber":            form.IDNumber,
+		"cardType":            form.CardType,
 		"vehiclePassType":     form.VehiclePassType,
 		"individuals":         []map[string]interface{}{},
 		"isTenant":            form.IsTenant,

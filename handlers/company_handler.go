@@ -59,6 +59,7 @@ func (h *CompanyHandler) HandleCreateCompanyRegister(c echo.Context) error {
 		"idType":                 form.IDType,
 		"idNumber":               form.IDNumber,
 		"vehiclePassType":        form.VehiclePassType,
+		"cardType":               form.CardType,
 	}
 
 	for _, plate := range form.CompanyPlates {
@@ -192,6 +193,7 @@ func (h *CompanyHandler) HandleCreateCompanyRegisterFinalize(c echo.Context) err
 		"address2":               form.CompanyAddressLine2,
 		"idType":                 form.IDType,
 		"idNumber":               form.IDNumber,
+		"cardType":               form.CardType,
 		"vehiclePassType":        form.VehiclePassType,
 		"individuals":            []map[string]interface{}{},
 		"companySupportingFiles": form.CompanySupportingFiles,
