@@ -14,7 +14,7 @@ func NewReceiptService() (service *ReceiptService, err error) {
 	return &ReceiptService{}, err
 }
 
-func (s *ReceiptService) SendReceipt(from, to, subject, recipientName string) {
+func (s *ReceiptService) SendReceipt(from, fromName, to, subject, recipientName string) {
 	go func() {
 		tmpl, err := template.ParseFiles("templates/registration_received.html")
 		if err != nil {
@@ -28,7 +28,7 @@ func (s *ReceiptService) SendReceipt(from, to, subject, recipientName string) {
 			log.Printf("receipt template execute error: %v", err)
 			return
 		}
-		if err := utils.SendEmail(from, to, subject, sb.String()); err != nil {
+		if err := utils.SendEmail(from, fromName, to, subject, sb.String()); err != nil {
 			log.Printf("receipt send error to %s: %v", to, err)
 		}
 	}()

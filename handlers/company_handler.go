@@ -242,7 +242,7 @@ func (h *CompanyHandler) HandleCreateCompanyRegisterFinalize(c echo.Context) err
 		return utils.ErrorResponse(c, 400, "Company registration finalization failed", errorMsg)
 	}
 
-	h.receiptService.SendReceipt(h.config.MailerFrom, form.ContactEmail, "Terima Kasih untuk Pendaftaran Anda/Thank You for Your Registration", form.CompanyName)
+	h.receiptService.SendReceipt(h.config.MailerFrom, h.config.MailerFromName, form.ContactEmail, h.config.CompanyReceiptSubject, form.CompanyName)
 
 	responseData := map[string]interface{}{
 		"id":           form.IDNumber,

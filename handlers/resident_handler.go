@@ -173,7 +173,7 @@ func (h *ResidentHandler) HandleCreateResidentRegisterFinalize(c echo.Context) e
 		return utils.ErrorResponse(c, 400, "Resident registration finalization failed", errorMsg)
 	}
 
-	h.receiptService.SendReceipt(h.config.MailerFrom, form.ContactEmail, "Registration Received", form.ResidentName)
+	h.receiptService.SendReceipt(h.config.MailerFrom, h.config.MailerFromName, form.ContactEmail, h.config.ResidentReceiptSubject, form.ResidentName)
 
 	responseData := map[string]interface{}{
 		"residentName": form.ResidentName,

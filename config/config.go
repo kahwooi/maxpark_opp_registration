@@ -26,6 +26,9 @@ type Config struct {
 	SiteCode                          string
 	JWTSecretKey                      string
 	MailerFrom                        string
+	MailerFromName                    string
+	ResidentReceiptSubject            string
+	CompanyReceiptSubject             string
 	MailerHost                        string
 	MailerPort                        int
 	MaiilerUsername                   string
@@ -59,6 +62,9 @@ func Load() *Config {
 		SiteCode:                          getEnv("SITE_CODE", ""),
 		JWTSecretKey:                      getEnv("JWT_SECRET_KEY", ""),
 		MailerFrom:                        getEnv("MAILER_FROM", ""),
+		MailerFromName:                    getEnv("MAILER_FROM_NAME", ""),
+		ResidentReceiptSubject:            getEnv("RESIDENT_RECEIPT_SUBJECT", ""),
+		CompanyReceiptSubject:             getEnv("COMPANY_RECEIPT_SUBJECT", ""),
 		MailerHost:                        getEnv("MAILER_HOST", ""),
 		MailerPort:                        getEnvAsInt("MAILER_PORT", 0),
 		MaiilerUsername:                   getEnv("MAILER_USER", ""),
